@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LeadController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,10 +14,23 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Auth::routes(['verify' => true]);
+
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/lead/create');
 });
 
-Auth::routes();
+Route::prefix('/lead')->name('lead.')->group(function () {
+    Route::get('/create', [LeadController::class, 'create'])->name('create');
+    Route::post('/store', [LeadController::class, 'store'])->name('store');
+    Route::get('/edit/{id}', [LeadController::class, 'edit'])->name('edit');
+    Route::post('/edit/{id}', [LeadController::class, 'update'])->name('update');
+    Route::delete('/delete/{id}', [LeadController::class, 'destroy'])->name('destroy');
+});
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::middleware('auth')->group(function () {
+    Route::prefix('/lists-and-statistics')->name('lists-and-statistics.')->group(function () {
+        Route::get('/', [LeadController::class, 'showListsAndStatistics'])->name('index');
+        Route::post('/change-lead-status', [LeadController::class, 'changeLeadStatus'])->name('change-lead-status');
+    });
+});

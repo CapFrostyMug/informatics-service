@@ -5,3 +5,25 @@ $body-bg: #f8fafc;
 $font-family-sans-serif: 'Nunito', sans-serif;
 $font-size-base: 0.9rem;
 $line-height-base: 1.6;
+
+// Убирает смещение страницы влево при появлении scrollbar-а
+html {
+    overflow-x: hidden;
+    margin-right: calc(-1 * (100vw - 100%));
+}
+
+// "Растяжка" блока с основным контентом во весь экран ("прижатие" футера)
+html,
+body {
+    height: 100%;
+}
+
+.custom-st-wrapper {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.custom-st-main {
+    flex: 1 1 auto;
+}

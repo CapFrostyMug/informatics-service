@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'Информатика и Сервис') }} | @yield('title')</title>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
@@ -17,7 +17,7 @@
     @vite(['resources/js/app.js'])
 </head>
 <body>
-    <div id="app">
+    <div id="app" class="custom-st-wrapper">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
@@ -29,8 +29,8 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav me-auto">
-
+                    <ul class="navbar-nav me-auto ms-5">
+                        @include('menu.index')
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -72,9 +72,13 @@
             </div>
         </nav>
 
-        <main class="py-4">
+        <main class="container custom-st-main bg-white py-4">
             @yield('content')
         </main>
+
+        <footer style="height: 50px;background-color: #666666">
+            {{----}}
+        </footer>
     </div>
 </body>
 </html>
