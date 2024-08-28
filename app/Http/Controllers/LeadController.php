@@ -13,16 +13,6 @@ use Illuminate\View\View;
 class LeadController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
      * Show the form for creating a new resource.
      *
      * @return View
@@ -58,17 +48,6 @@ class LeadController extends Controller
         } catch (\Exception $exception) {
             return back()->withInput()->with('error', config('messages.leads.error.store'));
         }
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
     }
 
     /**
